@@ -4,7 +4,7 @@
 #
 Name     : backports.weakref
 Version  : 1.01
-Release  : 1
+Release  : 2
 URL      : https://pypi.python.org/packages/bc/cc/3cdb0a02e7e96f6c70bd971bc8a90b8463fda83e264fa9c5c1c98ceabd81/backports.weakref-1.0rc1.tar.gz
 Source0  : https://pypi.python.org/packages/bc/cc/3cdb0a02e7e96f6c70bd971bc8a90b8463fda83e264fa9c5c1c98ceabd81/backports.weakref-1.0rc1.tar.gz
 Summary  : Backport of new features in Python's weakref module
@@ -46,12 +46,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1497645733
+export SOURCE_DATE_EPOCH=1497646657
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1497645733
+export SOURCE_DATE_EPOCH=1497646657
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -64,5 +64,9 @@ echo ----[ mark ]----
 
 %files python
 %defattr(-,root,root,-)
+%exclude /usr/lib/python2.7/site-packages/backports/__init__.py
+%exclude /usr/lib/python2.7/site-packages/backports/__init__.pyc
+%exclude /usr/lib/python3.6/site-packages/backports/__init__.py
+%exclude /usr/lib/python3.6/site-packages/backports/__pycache__/__init__.cpython-36.pyc
 /usr/lib/python2*/*
 /usr/lib/python3*/*
