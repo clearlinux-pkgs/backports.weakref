@@ -4,13 +4,14 @@
 #
 Name     : backports.weakref
 Version  : 1.01
-Release  : 4
+Release  : 5
 URL      : http://pypi.debian.net/backports.weakref/backports.weakref-1.0rc1.tar.gz
 Source0  : http://pypi.debian.net/backports.weakref/backports.weakref-1.0rc1.tar.gz
 Summary  : Backport of new features in Python's weakref module
 Group    : Development/Tools
 License  : Python-2.0
 Requires: backports.weakref-legacypython
+Requires: backports.weakref-python3
 Requires: backports.weakref-python
 BuildRequires : pbr
 BuildRequires : pip
@@ -34,6 +35,7 @@ under the backports_ namespace.
 %package legacypython
 Summary: legacypython components for the backports.weakref package.
 Group: Default
+Requires: python-core
 
 %description legacypython
 legacypython components for the backports.weakref package.
@@ -43,9 +45,19 @@ legacypython components for the backports.weakref package.
 Summary: python components for the backports.weakref package.
 Group: Default
 Requires: backports.weakref-legacypython
+Requires: backports.weakref-python3
 
 %description python
 python components for the backports.weakref package.
+
+
+%package python3
+Summary: python3 components for the backports.weakref package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the backports.weakref package.
 
 
 %prep
@@ -56,12 +68,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1504998318
+export SOURCE_DATE_EPOCH=1507149062
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1504998318
+export SOURCE_DATE_EPOCH=1507149062
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -79,6 +91,9 @@ echo ----[ mark ]----
 /usr/lib/python2*/*
 
 %files python
+%defattr(-,root,root,-)
+
+%files python3
 %defattr(-,root,root,-)
 %exclude /usr/lib/python3.6/site-packages/backports/__init__.py
 %exclude /usr/lib/python3.6/site-packages/backports/__pycache__/__init__.cpython-36.pyc
