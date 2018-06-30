@@ -4,7 +4,7 @@
 #
 Name     : backports.weakref
 Version  : 1.0rc1
-Release  : 15
+Release  : 16
 URL      : http://pypi.debian.net/backports.weakref/backports.weakref-1.0rc1.tar.gz
 Source0  : http://pypi.debian.net/backports.weakref/backports.weakref-1.0rc1.tar.gz
 Summary  : Backport of new features in Python's weakref module
@@ -56,7 +56,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1529092346
+export SOURCE_DATE_EPOCH=1530329005
 python3 setup.py build -b py3
 
 %install
@@ -74,6 +74,5 @@ echo ----[ mark ]----
 
 %files python3
 %defattr(-,root,root,-)
-%exclude /usr/lib/python3.6/site-packages/backports/__init__.py
-%exclude /usr/lib/python3.6/site-packages/backports/__pycache__/__init__.cpython-36.pyc
+%exclude /usr/lib/python3.7/site-packages/backports/__init__.py
 /usr/lib/python3*/*
