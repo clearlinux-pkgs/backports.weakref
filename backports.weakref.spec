@@ -4,7 +4,7 @@
 #
 Name     : backports.weakref
 Version  : 1.0rc1
-Release  : 18
+Release  : 19
 URL      : http://pypi.debian.net/backports.weakref/backports.weakref-1.0rc1.tar.gz
 Source0  : http://pypi.debian.net/backports.weakref/backports.weakref-1.0rc1.tar.gz
 Summary  : Backport of new features in Python's weakref module
