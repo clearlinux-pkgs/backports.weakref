@@ -4,7 +4,7 @@
 #
 Name     : backports.weakref
 Version  : 1.0.post1
-Release  : 25
+Release  : 27
 URL      : https://files.pythonhosted.org/packages/12/ab/cf35cf43a4a6215e3255cf2e49c77d5ba1e9c733af2aa3ec1ca9c4d02592/backports.weakref-1.0.post1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/12/ab/cf35cf43a4a6215e3255cf2e49c77d5ba1e9c733af2aa3ec1ca9c4d02592/backports.weakref-1.0.post1.tar.gz
 Summary  : Backport of new features in Python's weakref module
@@ -56,36 +56,45 @@ python3 components for the backports.weakref package.
 
 %prep
 %setup -q -n backports.weakref-1.0.post1
+cd %{_builddir}/backports.weakref-1.0.post1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1542158931
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1573676844
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
+export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/backports.weakref
-cp LICENSE %{buildroot}/usr/share/package-licenses/backports.weakref/LICENSE
+cp %{_builddir}/backports.weakref-1.0.post1/LICENSE %{buildroot}/usr/share/package-licenses/backports.weakref/4dfc4478b1d5f7388b298fdfc06802485bdeae0c
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+## Remove excluded files
+rm -f %{buildroot}/usr/lib/python3.8/site-packages/backports/__pycache__/__init__.cpython-38.pyc
+rm -f %{buildroot}/usr/lib/python3.8/site-packages/backports/__init__.py
 
 %files
 %defattr(-,root,root,-)
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/backports.weakref/LICENSE
+/usr/share/package-licenses/backports.weakref/4dfc4478b1d5f7388b298fdfc06802485bdeae0c
 
 %files python
 %defattr(-,root,root,-)
 
 %files python3
 %defattr(-,root,root,-)
-%exclude /usr/lib/python3.7/site-packages/backports/__init__.py
-%exclude /usr/lib/python3.7/site-packages/backports/__pycache__/__init__.cpython-37.pyc
 /usr/lib/python3*/*
