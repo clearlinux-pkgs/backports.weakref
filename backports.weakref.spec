@@ -4,7 +4,7 @@
 #
 Name     : backports.weakref
 Version  : 1.0.post1
-Release  : 29
+Release  : 30
 URL      : https://files.pythonhosted.org/packages/12/ab/cf35cf43a4a6215e3255cf2e49c77d5ba1e9c733af2aa3ec1ca9c4d02592/backports.weakref-1.0.post1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/12/ab/cf35cf43a4a6215e3255cf2e49c77d5ba1e9c733af2aa3ec1ca9c4d02592/backports.weakref-1.0.post1.tar.gz
 Summary  : Backport of new features in Python's weakref module
@@ -22,11 +22,51 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
+=================
 backports.weakref
-        =================
-        
-        This package provides backports of new features in Python's weakref_ module
-        under the backports_ namespace.
+=================
+
+This package provides backports of new features in Python's weakref_ module
+under the backports_ namespace.
+
+.. _weakref: https://docs.python.org/3.5/library/weakref.html
+.. _backports: https://pypi.python.org/pypi/backports
+
+.. image:: https://img.shields.io/pypi/v/backports.weakref.svg
+    :target: https://pypi.python.org/pypi/backports.weakref
+
+.. image:: https://img.shields.io/badge/source-GitHub-lightgrey.svg
+    :target: https://github.com/pjdelport/backports.weakref
+
+.. image:: https://img.shields.io/github/issues/pjdelport/backports.weakref.svg
+    :target: https://github.com/pjdelport/backports.weakref/issues?q=is:open
+
+.. image:: https://travis-ci.org/pjdelport/backports.weakref.svg?branch=master
+    :target: https://travis-ci.org/pjdelport/backports.weakref
+
+.. image:: https://codecov.io/github/pjdelport/backports.weakref/coverage.svg?branch=master
+    :target: https://codecov.io/github/pjdelport/backports.weakref?branch=master
+
+
+Supported Python versions
+=========================
+
+* CPython: 2.7, 3.4, 3.5, 3.6
+* PyPy
+
+
+Backported functionality
+========================
+
+* `weakref.finalize`_ (new in Python 3.4)
+
+.. _`weakref.finalize`: https://docs.python.org/3.5/library/weakref.html#weakref.finalize
+
+
+Contributing
+============
+
+See `<HACKING.rst>`__.
 
 %package license
 Summary: license components for the backports.weakref package.
@@ -49,6 +89,7 @@ python components for the backports.weakref package.
 Summary: python3 components for the backports.weakref package.
 Group: Default
 Requires: python3-core
+Provides: pypi(backports.weakref)
 
 %description python3
 python3 components for the backports.weakref package.
@@ -63,7 +104,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573676844
+export SOURCE_DATE_EPOCH=1582849537
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
