@@ -4,7 +4,7 @@
 #
 Name     : backports.weakref
 Version  : 1.0.post1
-Release  : 37
+Release  : 38
 URL      : https://files.pythonhosted.org/packages/12/ab/cf35cf43a4a6215e3255cf2e49c77d5ba1e9c733af2aa3ec1ca9c4d02592/backports.weakref-1.0.post1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/12/ab/cf35cf43a4a6215e3255cf2e49c77d5ba1e9c733af2aa3ec1ca9c4d02592/backports.weakref-1.0.post1.tar.gz
 Summary  : Backport of new features in Python's weakref module
@@ -64,7 +64,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1607976133
+export SOURCE_DATE_EPOCH=1607995883
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -83,8 +83,8 @@ echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 ## Remove excluded files
-rm -f %{buildroot}/usr/lib/python3.8/site-packages/backports/__pycache__/__init__.cpython-38.pyc
-rm -f %{buildroot}/usr/lib/python3.8/site-packages/backports/__init__.py
+rm -f %{buildroot}/usr/lib/python3*/site-packages/backports/__pycache__/__init__.cpython-3*.pyc
+rm -f %{buildroot}/usr/lib/python3*/site-packages/backports/__init__.py
 
 %files
 %defattr(-,root,root,-)
